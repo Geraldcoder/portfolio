@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-const url = 'https://portfolio-backend-1-o8b3.onrender.com/api/v1/projects'
+import { useGlobalContext } from '../context'
 
 const Projects = () => {
-	const [projects, setProjects] = useState([])
-	useEffect(() => {
-		const getData = async () => {
-			const response = await fetch(url)
-			const data = await response.json()
-			setProjects(data.newProject)
-		}
-		getData()
-	}, [])
+	const { projects, loadProjects } = useGlobalContext()
+	loadProjects()
 
 	const firstFour = projects.slice(0, 4)
 	return (

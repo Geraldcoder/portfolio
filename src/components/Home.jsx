@@ -25,7 +25,7 @@ const Home = () => {
 			const bgStyle =
 				window.innerWidth < 730
 					? {
-							minHeight: '35rem',
+							minHeight: '45rem',
 							width: '100%',
 							backgroundPosition: 'left',
 							backgroundSize: 'cover',

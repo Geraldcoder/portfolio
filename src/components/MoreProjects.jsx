@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import data from '../../proData'
+import { useGlobalContext } from '../context'
+const url = 'https://portfolio-backend-1-o8b3.onrender.com/api/v1/projects'
 
 const MoreProjects = () => {
-	// const firstItem = data[7]
-	// console.log(firstItem.type)
+	const { projects, loadProjects } = useGlobalContext()
+	loadProjects()
 	return (
 		<section className='project-section more-section container'>
 			<div className='filter-buttons'>
@@ -15,11 +16,11 @@ const MoreProjects = () => {
 			</div>
 			<div className='projects-container more-container container'>
 				<div className='img-container'>
-					{data.map((dataItem) => {
-						const { id, title, link, image } = dataItem
+					{projects.map((dataItem) => {
+						const { id, title, link, imageUrl } = dataItem
 						return (
 							<Link key={id} to={link} className='pro-text'>
-								<img src={image} alt='' />
+								<img src={imageUrl} alt='' />
 								<div className='pro-text-title'>
 									<h3>{title}</h3>
 								</div>

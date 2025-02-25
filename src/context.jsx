@@ -1,24 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+const url = 'https://portfolio-backend-1-o8b3.onrender.com/api/v1/projects'
 
 const ProductProvider = React.createContext()
 
 const AppProvider = ({ children }) => {
-	const [sideBar, setSideBar] = useState(false)
-	const [modalOpen, setModalOpen] = useState(false)
 	const [openAccordionId, setOpenAccordionId] = useState(null)
+	const [projects, setProjects] = useState([])
 
-	const openSideBar = () => {
-		setSideBar(true)
+	const loadProjects = () => {
+		useEffect(() => {
+			const getData = async () => {
+				const response = await fetch(url)
+				const data = await response.json()
+				setProjects(data.newProject)
+			}
+			getData()
+		}, [])
 	}
-	const closeSideBar = () => {
-		setSideBar(false)
-	}
-	const openModal = () => {
-		setModalOpen(true)
-	}
-	const closeModal = () => {
-		setModalOpen(false)
-	}
+
 	function accordionHandler(id) {
 		setOpenAccordionId(openAccordionId === id ? null : id)
 	}
@@ -26,14 +25,10 @@ const AppProvider = ({ children }) => {
 	return (
 		<ProductProvider.Provider
 			value={{
-				sideBar,
-				modalOpen,
-				openModal,
-				openSideBar,
-				closeModal,
-				closeSideBar,
 				accordionHandler,
 				openAccordionId,
+				projects,
+				loadProjects,
 			}}>
 			{children}
 		</ProductProvider.Provider>

@@ -85,6 +85,18 @@ body {
 	color: var(--mainCream);
 }
 
+@media screen and (max-width: 450px) {
+	.nav-list {
+		padding-inline: 0.4rem;
+	}
+	.nav-list li {
+		padding-inline: 0.3rem;
+	}
+	.nav-list li a {
+		font-size: 0.75rem;
+	}
+}
+
 /* ---------- HOME ---------- */
 
 .home-text {
@@ -128,8 +140,14 @@ body {
 		padding: 0;
 		line-height: 3rem;
 		border: none;
-		top: 12rem;
-		left: 3.5rem;
+		top: 16rem;
+		left: 2rem;
+		padding-left: 1rem;
+	}
+}
+@media screen and (max-width: 450px) {
+	.home-text {
+		left: 0;
 	}
 }
 
